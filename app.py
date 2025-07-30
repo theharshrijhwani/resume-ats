@@ -6,9 +6,11 @@ import streamlit as st
 import plotly.express as px
 from pypdf import PdfReader
 
+MODEL_NAME = "llama3"
+
 def generate_response(job_description, resume, prompt):
     final_prompt = resume + job_description + prompt
-    response = ollama.generate(model='llama3', prompt=final_prompt, stream=True)
+    response = ollama.generate(model=MODEL_NAME, prompt=final_prompt, stream=True)
 
     def write_stream(response):
         for chunk in response:
